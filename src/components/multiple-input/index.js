@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component, ReactPropTypes as PropTypes} from 'react';
 import './styles.css'
 
 class MultipleInput extends Component {
@@ -78,5 +78,10 @@ class MultipleInput extends Component {
         );
     }
 }
+
+MultipleInput.propTypes = {
+    data: PropTypes.array.isRequired,
+    onChange: PropTypes.isRequired,
+};
 
 export default MultipleInput;
