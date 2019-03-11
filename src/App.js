@@ -4,8 +4,14 @@ import MultipleInput from './components/multiple-input'
 
 class App extends Component {
 
-  onChangeMultipleInput(data) {
-    console.log(data)
+  state = {
+    office: {}
+  };
+
+
+  onChangeMultipleInput = async (data) => {
+    await this.setState(prevState => ({office: {...prevState.office, data}}));
+    console.log(this.state);
   }
 
   render() {
@@ -14,7 +20,7 @@ class App extends Component {
         <header className="App-header">
           <div style={{width: 400, height: 400, padding: 5, backgroundColor: 'white'}}>
             <MultipleInput
-                data={["first", "second"]}
+                data={this.state.office.phone}
                 onChange={this.onChangeMultipleInput}
                 max={5}
                 maxLength={20}

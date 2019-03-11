@@ -14,6 +14,10 @@ class MultipleInput extends Component {
         this.setState({data: this.props.data || []})
     }
 
+    componentWillReceiveProps(nextProps, nextContext) {
+        this.setState({data: nextProps.data || []})
+    }
+
     onChange = async (index, value) => {
         if (this.props.maxLength !== undefined && value.length > this.props.maxLength) return;
         if (index === -1)  // add element
@@ -40,7 +44,7 @@ class MultipleInput extends Component {
     };
 
     render() {
-        const {size, data, inputStyles, max, placeholder} = this.props;
+        const {size, inputStyles, max, placeholder} = this.props;
         let inputClassName = 'multiple-input-default';
         if (size === "large" || size === "default" || size === "small") {
             inputClassName = 'multiple-input-' + size;
@@ -49,7 +53,7 @@ class MultipleInput extends Component {
         return (
             <div className='multiple-input-container'>
                 {
-                    data.map((text, index) => (
+                    this.state.data.map((text, index) => (
                         <input className={inputClassName}
                                style={inputStyles}
                                key={index}
